@@ -3,12 +3,11 @@ module.exports = function (Homework) {
     const promise = new Promise((resolve) => {
         asyncFn(...args, (data) => resolve(data));
     });
-      return promise;
+    return promise;
   };
 
-  const { add, less, AsyncArray } = Homework;
-
-  return async function (asyncArray, fn, initialValue, cb) {
+  return async (asyncArray, fn, initialValue, cb) => {
+    const { add, less, AsyncArray } = Homework;
     const { get, length } = AsyncArray;
 
     const promiseLength = promisify(length);
