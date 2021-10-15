@@ -10,8 +10,8 @@ module.exports = function (Homework) {
 
     const promiseLength = promisify(asyncArray.length);
     const promiseGet = promisify(asyncArray.get);
-    const promiseAdd = promisify(add);
-    const promiseLess = promisify(less);
+    const promiseAdd = promisify(Homework.add);
+    const promiseLess = promisify(Homework.less);
 
     const promiseFn = promisify(fn);
 
