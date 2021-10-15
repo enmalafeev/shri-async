@@ -17,9 +17,9 @@ module.exports = function (Homework) {
 
     const len = await promiseLength();
 
-    for (let i = 0; await promiseLess(i, len); await promiseAdd(i, 1)) {
-        let currentItem = await promiseGet(i);
-        initialValue = await promiseFn(initialValue, currentItem, i, asyncArray);
+    for (let i = 0; await promiseLess(i, len); i = await promiseAdd(i, 1)) {
+      let currentItem = await promiseGet(i);
+      initialValue = await promiseFn(initialValue, currentItem, i, asyncArray);
     }
 
 
