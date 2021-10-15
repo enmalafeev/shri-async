@@ -1,6 +1,4 @@
 module.exports = function (Homework) {
-
-  // вспомогательные фукнции и т.д.
   const promisify = (asyncFn) => (...args) => {
     const promise = new Promise((resolve) => {
         asyncFn(...args, (data) => resolve(data));
@@ -8,7 +6,7 @@ module.exports = function (Homework) {
       return promise;
   };
 
-  return (asyncArray, fn, initialValue, cb) => {
+  return async (asyncArray, fn, initialValue, cb) => {
     
     const promiseLength = promisify(asyncArray.length);
     const promiseGet = promisify(asyncArray.get);
@@ -23,6 +21,5 @@ module.exports = function (Homework) {
     }
 
     return initialValue;
-
   }
 }
