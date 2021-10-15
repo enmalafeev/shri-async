@@ -1,19 +1,21 @@
 module.exports = function (Homework) {
-  const promisify = (asyncFn) => (...args) => {
-    const promise = new Promise((resolve) => {
-        asyncFn(...args, (data) => resolve(data));
-    });
-    return promise;
-  };
+  const { add, less } = Homework;
 
   return async (asyncArray, fn, initialValue, cb) => {
-    const { add, less, AsyncArray } = Homework;
-    const { get, length } = AsyncArray;
+
+    const promisify = (asyncFn) => (...args) => {
+      const promise = new Promise((resolve) => {
+          asyncFn(...args, (data) => resolve(data));
+      });
+      return promise;
+    };
+
+    const { get, length } = asyncArray;
 
     const promiseLength = promisify(length);
+    const promiseLess = promisify(less);
     const promiseGet = promisify(get);
     const promiseAdd = promisify(add);
-    const promiseLess = promisify(less);
 
     const promiseFn = promisify(fn);
 
