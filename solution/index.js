@@ -26,6 +26,6 @@ module.exports = function (Homework) {
       initialValue = await promiseFn(initialValue, currentItem, i, asyncArray, cb);
     }
   
-    return initialValue;
+    return cb(initialValue);
   }
 }
