@@ -7,18 +7,21 @@ module.exports = function (Homework) {
   };
 
   return async (asyncArray, fn, initialValue, cb) => {
-    
+
     const promiseLength = promisify(asyncArray.length);
     const promiseGet = promisify(asyncArray.get);
+    const promiseAdd = promisify(add);
+    const promiseLess = promisify(less);
 
     const promiseFn = promisify(fn);
 
     const len = await promiseLength();
 
-    for (let i = 0; i < len; i += 1) {
+    for (let i = 0; await promiseLess(i, len); await promiseAdd(i, 1)) {
         let currentItem = await promiseGet(i);
         initialValue = await promiseFn(initialValue, currentItem, i, asyncArray);
     }
+
 
     return initialValue;
   }
