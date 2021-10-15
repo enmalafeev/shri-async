@@ -21,11 +21,15 @@ module.exports = function (Homework) {
 
     const len = await promiseLength();
 
-    for (let i = 0; await promiseLess(i, len); i = await promiseAdd(i, 1)) {
-      let currentItem = await promiseGet(i);
-      initialValue = await promiseFn(initialValue, currentItem, i, asyncArray, cb);
+    const inner = async () => {
+      for (let i = 0; await promiseLess(i, len); i = await promiseAdd(i, 1)) {
+        let currentItem = await promiseGet(i);
+        initialValue = await promiseFn(initialValue, currentItem, i, asyncArray, cb);
+      }
+      return initialValue;
     }
-  
-    return cb(initialValue);
+
+    const res = await inner();
+    cb(res);
   }
 }
