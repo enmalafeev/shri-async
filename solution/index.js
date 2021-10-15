@@ -8,7 +8,7 @@ module.exports = function (Homework) {
 
   const { add, less, AsyncArray } = Homework;
 
-  return async (asyncArray, fn, initialValue, cb) => {
+  return async function (asyncArray, fn, initialValue, cb) {
     const { get, length } = AsyncArray;
 
     const promiseLength = promisify(length);
